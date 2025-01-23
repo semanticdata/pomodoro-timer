@@ -1,3 +1,4 @@
+// Timer type configurations with their respective durations and colors
 const TIMER_TYPES = {
     POMODORO: { minutes: 25, color: '#ff6b6b' },
     SHORT_BREAK: { minutes: 5, color: '#4ecdc4' },
@@ -66,6 +67,11 @@ function switchTimer(type) {
     }
 }
 
+/**
+ * Handles switching between different timer types (Pomodoro, Short Break, Long Break)
+ * Shows confirmation dialog if timer is currently running
+ * @param {string} type - The timer type to switch to ('POMODORO', 'SHORT_BREAK', 'LONG_BREAK')
+ */
 function handleTimerTypeSwitch(type) {
     if (isRunning) {
         if (confirm('Timer is currently running. Are you sure you want to switch?')) {
@@ -82,6 +88,11 @@ function handleTimerTypeSwitch(type) {
     }
 }
 
+/**
+ * Updates the visual state of timer type buttons
+ * Adds 'active' class to selected timer type and removes from others
+ * @param {string} type - The active timer type
+ */
 function updateActiveButton(type) {
     pomodoroButton.classList.toggle('active', type === 'POMODORO');
     shortBreakButton.classList.toggle('active', type === 'SHORT_BREAK');
@@ -153,6 +164,7 @@ startButton.addEventListener("click", startTimer);
 pauseButton.addEventListener("click", pauseTimer);
 resetButton.addEventListener("click", resetTimer);
 
+// Event listeners for timer type buttons
 pomodoroButton.addEventListener('click', () => {
     handleTimerTypeSwitch('POMODORO');
 });
