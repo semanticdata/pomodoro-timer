@@ -27,6 +27,8 @@ jobs:
         run: |
           mkdir dist
           mv pomodoro-timer.html dist/index.html
+          mv style.css dist/style.css
+          mv script.js dist/script.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
