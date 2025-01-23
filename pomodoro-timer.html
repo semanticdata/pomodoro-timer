@@ -11,11 +11,27 @@
 <body>
     <div class="pomodoro">
         <h1>Pomodoro Timer</h1>
-        <div id="timer">
-            <span id="minutes">25</span>:<span id="seconds">00</span>
+        <div class="timer-type">
+            <button id="pomodoro" class="active">Pomodoro</button>
+            <button id="short-break">Short Break</button>
+            <button id="long-break">Long Break</button>
         </div>
-        <button id="start">Start</button>
-        <button id="reset">Reset</button>
+        <div class="timer-container">
+            <div class="progress-ring">
+                <div id="timer">
+                    <span id="minutes">25</span>:<span id="seconds">00</span>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div class="stats">
+            <p>Sessions completed: <span id="session-count">0</span></p>
+        </div>
+        <audio id="timer-end" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
     </div>
     <script src="script.js"></script>
 </body>
