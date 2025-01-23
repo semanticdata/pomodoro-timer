@@ -66,6 +66,28 @@ function switchTimer(type) {
     }
 }
 
+function handleTimerTypeSwitch(type) {
+    if (isRunning) {
+        if (confirm('Timer is currently running. Are you sure you want to switch?')) {
+            clearInterval(timer);
+            isRunning = false;
+            isPaused = false;
+            switchTimer(type);
+            updateButtonStates();
+            updateActiveButton(type);
+        }
+    } else {
+        switchTimer(type);
+        updateActiveButton(type);
+    }
+}
+
+function updateActiveButton(type) {
+    pomodoroButton.classList.toggle('active', type === 'POMODORO');
+    shortBreakButton.classList.toggle('active', type === 'SHORT_BREAK');
+    longBreakButton.classList.toggle('active', type === 'LONG_BREAK');
+}
+
 function startTimer() {
     if (!isRunning) {
         isRunning = true;
@@ -131,9 +153,17 @@ startButton.addEventListener("click", startTimer);
 pauseButton.addEventListener("click", pauseTimer);
 resetButton.addEventListener("click", resetTimer);
 
-pomodoroButton.addEventListener("click", () => switchTimer('POMODORO'));
-shortBreakButton.addEventListener("click", () => switchTimer('SHORT_BREAK'));
-longBreakButton.addEventListener("click", () => switchTimer('LONG_BREAK'));
+pomodoroButton.addEventListener('click', () => {
+    handleTimerTypeSwitch('POMODORO');
+});
+
+shortBreakButton.addEventListener('click', () => {
+    handleTimerTypeSwitch('SHORT_BREAK');
+});
+
+longBreakButton.addEventListener('click', () => {
+    handleTimerTypeSwitch('LONG_BREAK');
+});
 
 // Initialize display
 updateDisplay();
